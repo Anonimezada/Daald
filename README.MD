@@ -1,1 +1,2 @@
 # Daald
+Bot pra Discord
