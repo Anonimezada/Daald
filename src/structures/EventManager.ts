@@ -1,19 +1,15 @@
-import Client from './Client'
+import DaaldClient from "./Client";
+import Event from '../structures/event';
 
 export default class EventManager {
+  public client: DaaldClient;
 
-  private client: Client;
-  private events: Map<string, string>;
-
-  constructor(client: Client){
+  constructor(client: DaaldClient) {
     this.client = client;
-    this.events = new Map();
   }
 
-  add(name: string, filepath:string, event) {
-    event.dir = filepath;
+  add(event: Event): void {
     event.run = event.run.bind(event);
-    this.client.on(name, event.run);
-    this.events.set(name, event);
+    this.client.on(event.name, event.run);
   }
 }
